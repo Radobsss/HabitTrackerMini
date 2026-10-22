@@ -1,3 +1,6 @@
+using HabitTrackerMini.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace HabitTrackerMini.Web
 {
     public class Program
@@ -8,6 +11,10 @@ namespace HabitTrackerMini.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<HabitDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
