@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HabitTrackerMini.Data2.Entities
 {
-    internal class Habit
+    public class Habit
     {
     }
 }

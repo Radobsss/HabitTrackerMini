@@ -1,7 +1,5 @@
-﻿using HabitTrackerMini.Data.Entities;
-using HabitTrackerMini.Data2.Entities;
+﻿using HabitTrackerMini.Data2.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace HabitTrackerMini.Data
 {
