@@ -1,8 +1,9 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="py-4">
+    <h1>HabitTrackerMini</h1>
+    <p>Добавяй навици и си поставяй седмични цели.</p>
+    <a asp-controller="Habits" asp-action="Index" class="btn btn-primary">Моите навици</a>
+</section>
