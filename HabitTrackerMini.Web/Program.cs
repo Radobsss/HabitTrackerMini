@@ -17,6 +17,7 @@ namespace HabitTrackerMini.Web
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
                 ?? throw new InvalidOperationException("Configure ConnectionStrings:DefaultConnection.");
             builder.Services.AddDbContext<HabitDbContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddSingleton(TimeProvider.System);
             builder.Services.AddScoped<IHabitService, HabitService>();
 
             var app = builder.Build();
