@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HabitTrackerMini.Data2\HabitTrackerMini.Data2.csproj" />
+    <ProjectReference Include="..\HabitTrackerMini.Data\HabitTrackerMini.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

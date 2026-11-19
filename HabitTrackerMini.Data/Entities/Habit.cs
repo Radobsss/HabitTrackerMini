@@ -1,4 +1,4 @@
-﻿namespace HabitTrackerMini.Data2.Entities
+namespace HabitTrackerMini.Data.Entities
 {
     public class Habit
     {
@@ -12,6 +12,8 @@
 
         public string Description { get; set; } = string.Empty;
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
+
+        public ICollection<HabitEntry> Entries { get; } = new List<HabitEntry>();
     }
 }

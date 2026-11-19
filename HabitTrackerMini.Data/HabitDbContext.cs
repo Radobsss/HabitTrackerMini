@@ -1,4 +1,4 @@
-﻿using HabitTrackerMini.Data2.Entities;
+using HabitTrackerMini.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HabitTrackerMini.Data
