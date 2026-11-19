@@ -1,29 +1,22 @@
 ﻿
-using HabitTrackerMini.Data;
-using HabitTrackerMini.Data.Entities;
+using HabitTrackerMini.Services.Contracts;
 using HabitTrackerMini.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HabitTrackerMini.Web.Controllers
 {
     public class HabitsController : Controller
     {
-        private readonly HabitDbContext context;
+        private readonly IHabitService habitService;
 
-        public HabitsController(HabitDbContext context)
+        public HabitsController(IHabitService habitService)
         {
-            this.context = context;
+            this.habitService = habitService;
         }
 
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var habits = await context.Habits.AsNoTracking()
-                .OrderByDescending(habit => habit.IsActive)
-                .ThenBy(habit => habit.Name)
-                .ThenBy(habit => habit.Id)
-                .ToListAsync(cancellationToken);
-
+            var habits = await habitService.GetAllAsync(cancellationToken);
             return View(habits);
         }
 
@@ -42,14 +35,8 @@ namespace HabitTrackerMini.Web.Controllers
                 return View(input);
             }
 
-            context.Habits.Add(new Habit
-            {
-                Name = input.Name.Trim(),
-                Category = input.Category.Trim(),
-                WeeklyGoal = input.WeeklyGoal,
-                Description = input.Description?.Trim() ?? string.Empty
-            });
-            await context.SaveChangesAsync(cancellationToken);
+            await habitService.CreateAsync(input.Name, input.Category, input.WeeklyGoal,
+                input.Description, cancellationToken);
 
             return RedirectToAction(nameof(Index));
         }

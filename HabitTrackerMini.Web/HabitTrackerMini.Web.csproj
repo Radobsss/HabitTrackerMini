@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HabitTrackerMini.Data\HabitTrackerMini.Data.csproj" />
+    <ProjectReference Include="..\HabitTrackerMini.Services\HabitTrackerMini.Services.csproj" />
   </ItemGroup>
 
 </Project>
