@@ -17,8 +17,4 @@
     <ProjectReference Include="..\HabitTrackerMini.Data\HabitTrackerMini.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>

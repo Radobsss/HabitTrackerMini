@@ -12,9 +12,9 @@ namespace HabitTrackerMini.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<HabitDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Configure ConnectionStrings:DefaultConnection.");
+            builder.Services.AddDbContext<HabitDbContext>(options => options.UseSqlServer(connectionString));
 
             var app = builder.Build();
 
