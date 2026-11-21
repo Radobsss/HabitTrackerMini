@@ -1,6 +1,7 @@
 using HabitTrackerMini.Data;
 using HabitTrackerMini.Data.Entities;
 using HabitTrackerMini.Services.Contracts;
+using HabitTrackerMini.Services.DTOs.Habits;
 using HabitTrackerMini.Services.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -18,12 +19,13 @@ public class HabitService : IHabitService
         this.clock = clock;
     }
 
-    public async Task<IReadOnlyList<Habit>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<IReadOnlyList<HabitListDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await context.Habits.AsNoTracking()
             .OrderByDescending(habit => habit.IsActive)
             .ThenBy(habit => habit.Name)
             .ThenBy(habit => habit.Id)
+            .Select(habit => new HabitListDto(habit.Id, habit.Name, habit.Category, habit.WeeklyGoal, habit.IsActive))
             .ToListAsync(cancellationToken);
     }
 

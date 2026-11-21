@@ -2,6 +2,7 @@
 using HabitTrackerMini.Services.Contracts;
 using HabitTrackerMini.Services.Models;
 using HabitTrackerMini.Web.Models;
+using HabitTrackerMini.Web.ViewModels.Habits;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HabitTrackerMini.Web.Controllers
@@ -18,7 +19,7 @@ namespace HabitTrackerMini.Web.Controllers
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
             var habits = await habitService.GetAllAsync(cancellationToken);
-            return View(habits);
+            return View(new HabitsIndexViewModel(habits));
         }
 
         [HttpGet]
